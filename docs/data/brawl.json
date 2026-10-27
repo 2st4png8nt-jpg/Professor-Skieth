@@ -1,0 +1,399 @@
+{
+ "fighters": [
+  {
+   "name": "Volt",
+   "origin": "Season 2 Champion",
+   "teamText": "Garchomp (M) @ Lum Berry  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- swordsdance  \n- earthquake  \n- scaleshot  \n- outrage  \n\nMaushold (Maushold-Four) @ Wide Lens  \nAbility: Technician  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- bite  \n- encore  \n- tidyup  \n- populationbomb  \n\nMedicham (M) @ Choice Scarf  \nAbility: Pure Power  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- icepunch  \n- poisonjab  \n- zenheadbutt  \n- closecombat  \n\nQuaquaval (F) @ Life Orb  \nAbility: Moxie  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- swordsdance  \n- encore  \n- closecombat  \n- aquastep  \n\nOranguru (M) @ Leftovers  \nAbility: Inner Focus  \nLevel: 50  \nEVs: 32 HP / 2 Def / 32 SpA  \nModest Nature  \n- focusblast  \n- psyshock  \n- hypervoice  \n- nastyplot  \n\nEmolga (F)  \nAbility: Motor Drive  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- roost  \n- thunderbolt  \n- acrobatics  \n- nuzzle  \n\n",
+   "version": "brain v2"
+  },
+  {
+   "name": "Red",
+   "origin": "Won the title on run 248",
+   "teamText": "Garchomp (F) @ Leftovers  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- spikes  \n- stealthrock  \n- outrage  \n- earthquake  \n\nKrookodile (M) @ Choice Scarf  \nAbility: Intimidate  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- earthquake  \n- closecombat  \n- gunkshot  \n- knockoff  \n\nScrafty (M) @ Scraftinite  \nAbility: Intimidate  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- ironhead  \n- knockoff  \n- dragondance  \n- drainpunch  \n\nSpiritomb (M) @ Leftovers  \nAbility: Pressure  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- foulplay  \n- willowisp  \n- poltergeist  \n- suckerpunch  \n\nAzumarill (M) @ Sitrus Berry  \nAbility: Huge Power  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- playrough  \n- liquidation  \n- aquajet  \n- bellydrum  \n\nHoundoom (F) @ Life Orb  \nAbility: Flash Fire  \nLevel: 50  \nEVs: 2 HP / 32 SpA / 32 Spe  \nTimid Nature  \n- darkpulse  \n- fireblast  \n- nastyplot  \n- sludgebomb  \n\n",
+   "version": "v110"
+  },
+  {
+   "name": "Blue",
+   "origin": "Won the title on run 32",
+   "teamText": "Garchomp (F) @ Lum Berry  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- earthquake  \n- swordsdance  \n- scaleshot  \n- outrage  \n\nHoundstone (M) @ Leftovers  \nAbility: Fluffy  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- shadowsneak  \n- bodypress  \n- roar  \n- poltergeist  \n\nMudsdale (M) @ Leftovers  \nAbility: Stamina  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- stoneedge  \n- earthquake  \n- heavyslam  \n- roar  \n\nStarmie @ Starminite  \nAbility: Natural Cure  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- icespinner  \n- bulkup  \n- liquidation  \n- zenheadbutt  \n\nJolteon (M) @ Leftovers  \nAbility: Volt Absorb  \nLevel: 50  \nEVs: 2 HP / 32 SpA / 32 Spe  \nTimid Nature  \n- thunderbolt  \n- substitute  \n- calmmind  \n- alluringvoice  \n\nDecidueye (Decidueye-Hisui) (F) @ Leftovers  \nAbility: Scrappy  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- suckerpunch  \n- roost  \n- triplearrows  \n- leafblade  \n\n",
+   "version": "v21"
+  },
+  {
+   "name": "Skieth",
+   "origin": "Won the title on run 57",
+   "teamText": "Mamoswine (M) @ Life Orb  \nAbility: Thick Fat  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- knockoff  \n- iciclecrash  \n- iceshard  \n- earthquake  \n\nMaushold @ Wide Lens  \nAbility: Technician  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- populationbomb  \n- bite  \n- encore  \n- tidyup  \n\nAraquanid (F) @ Leftovers  \nAbility: Water Bubble  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- stickyweb  \n- liquidation  \n- mirrorcoat  \n- leechlife  \n\nOrthworm (M) @ Chesto Berry  \nAbility: Earth Eater  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- irontail  \n- bodypress  \n- coil  \n- rest  \n\nRaichu (F) @ Life Orb  \nAbility: Lightning Rod  \nLevel: 50  \nEVs: 2 HP / 32 SpA / 32 Spe  \nTimid Nature  \n- surf  \n- encore  \n- nastyplot  \n- thunderbolt  \n\nGarchomp (M) @ Leftovers  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- spikes  \n- stealthrock  \n- earthquake  \n- outrage  \n\n",
+   "version": "v26"
+  }
+ ],
+ "standings": [
+  {
+   "name": "Red",
+   "sw": 3,
+   "sl": 0,
+   "gw": 9,
+   "gl": 2
+  },
+  {
+   "name": "Blue",
+   "sw": 2,
+   "sl": 1,
+   "gw": 7,
+   "gl": 5
+  },
+  {
+   "name": "Skieth",
+   "sw": 1,
+   "sl": 2,
+   "gw": 4,
+   "gl": 6
+  },
+  {
+   "name": "Volt",
+   "sw": 0,
+   "sl": 3,
+   "gw": 2,
+   "gl": 9
+  }
+ ],
+ "results": [
+  {
+   "a": "Volt",
+   "b": "Red",
+   "wa": 0,
+   "wb": 3,
+   "winner": "Red",
+   "stage": "Round robin"
+  },
+  {
+   "a": "Volt",
+   "b": "Blue",
+   "wa": 2,
+   "wb": 3,
+   "winner": "Blue",
+   "stage": "Round robin"
+  },
+  {
+   "a": "Volt",
+   "b": "Skieth",
+   "wa": 0,
+   "wb": 3,
+   "winner": "Skieth",
+   "stage": "Round robin"
+  },
+  {
+   "a": "Red",
+   "b": "Blue",
+   "wa": 3,
+   "wb": 1,
+   "winner": "Red",
+   "stage": "Round robin"
+  },
+  {
+   "a": "Red",
+   "b": "Skieth",
+   "wa": 3,
+   "wb": 1,
+   "winner": "Red",
+   "stage": "Round robin"
+  },
+  {
+   "a": "Blue",
+   "b": "Skieth",
+   "wa": 3,
+   "wb": 0,
+   "winner": "Blue",
+   "stage": "Round robin"
+  },
+  {
+   "a": "Red",
+   "b": "Blue",
+   "wa": 4,
+   "wb": 2,
+   "winner": "Red",
+   "stage": "Grand Final"
+  }
+ ],
+ "champion": "Red",
+ "games": [
+  {
+   "stage": "Round robin",
+   "game": 1,
+   "p1": "Volt",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 15,
+   "a": "Volt",
+   "b": "Red"
+  },
+  {
+   "stage": "Round robin",
+   "game": 2,
+   "p1": "Red",
+   "p2": "Volt",
+   "winner": "Red",
+   "turns": 11,
+   "a": "Volt",
+   "b": "Red"
+  },
+  {
+   "stage": "Round robin",
+   "game": 3,
+   "p1": "Volt",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 14,
+   "a": "Volt",
+   "b": "Red"
+  },
+  {
+   "stage": "Round robin",
+   "game": 1,
+   "p1": "Volt",
+   "p2": "Blue",
+   "winner": "Volt",
+   "turns": 22,
+   "a": "Volt",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 2,
+   "p1": "Blue",
+   "p2": "Volt",
+   "winner": "Volt",
+   "turns": 19,
+   "a": "Volt",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 3,
+   "p1": "Volt",
+   "p2": "Blue",
+   "winner": "Blue",
+   "turns": 17,
+   "a": "Volt",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 4,
+   "p1": "Blue",
+   "p2": "Volt",
+   "winner": "Blue",
+   "turns": 13,
+   "a": "Volt",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 5,
+   "p1": "Volt",
+   "p2": "Blue",
+   "winner": "Blue",
+   "turns": 15,
+   "a": "Volt",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 1,
+   "p1": "Volt",
+   "p2": "Skieth",
+   "winner": "Skieth",
+   "turns": 15,
+   "a": "Volt",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 2,
+   "p1": "Skieth",
+   "p2": "Volt",
+   "winner": "Skieth",
+   "turns": 14,
+   "a": "Volt",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 3,
+   "p1": "Volt",
+   "p2": "Skieth",
+   "winner": "Skieth",
+   "turns": 14,
+   "a": "Volt",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 1,
+   "p1": "Red",
+   "p2": "Blue",
+   "winner": "Blue",
+   "turns": 24,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 2,
+   "p1": "Blue",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 15,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 3,
+   "p1": "Red",
+   "p2": "Blue",
+   "winner": "Red",
+   "turns": 15,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 4,
+   "p1": "Blue",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 21,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Round robin",
+   "game": 1,
+   "p1": "Red",
+   "p2": "Skieth",
+   "winner": "Red",
+   "turns": 15,
+   "a": "Red",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 2,
+   "p1": "Skieth",
+   "p2": "Red",
+   "winner": "Skieth",
+   "turns": 18,
+   "a": "Red",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 3,
+   "p1": "Red",
+   "p2": "Skieth",
+   "winner": "Red",
+   "turns": 16,
+   "a": "Red",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 4,
+   "p1": "Skieth",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 15,
+   "a": "Red",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 1,
+   "p1": "Blue",
+   "p2": "Skieth",
+   "winner": "Blue",
+   "turns": 16,
+   "a": "Blue",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 2,
+   "p1": "Skieth",
+   "p2": "Blue",
+   "winner": "Blue",
+   "turns": 17,
+   "a": "Blue",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Round robin",
+   "game": 3,
+   "p1": "Blue",
+   "p2": "Skieth",
+   "winner": "Blue",
+   "turns": 16,
+   "a": "Blue",
+   "b": "Skieth"
+  },
+  {
+   "stage": "Grand Final",
+   "game": 1,
+   "p1": "Red",
+   "p2": "Blue",
+   "winner": "Blue",
+   "turns": 23,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Grand Final",
+   "game": 2,
+   "p1": "Blue",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 20,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Grand Final",
+   "game": 3,
+   "p1": "Red",
+   "p2": "Blue",
+   "winner": "Red",
+   "turns": 20,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Grand Final",
+   "game": 4,
+   "p1": "Blue",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 15,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Grand Final",
+   "game": 5,
+   "p1": "Red",
+   "p2": "Blue",
+   "winner": "Blue",
+   "turns": 15,
+   "a": "Red",
+   "b": "Blue"
+  },
+  {
+   "stage": "Grand Final",
+   "game": 6,
+   "p1": "Blue",
+   "p2": "Red",
+   "winner": "Red",
+   "turns": 34,
+   "a": "Red",
+   "b": "Blue"
+  }
+ ]
+}
