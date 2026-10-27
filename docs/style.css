@@ -47,3 +47,21 @@ svg text { fill: var(--muted); font-size: 11px; }
 .game { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--c, var(--line)); border-radius: 10px; padding: 10px 12px; }
 .muted { color: var(--muted); }
 footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+
+/* Run cards */
+.runlist { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; }
+.runcard { display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; color: inherit; text-decoration: none !important; transition: border-color .15s, transform .15s; }
+.runcard:hover { border-color: var(--accent); transform: translateY(-1px); }
+.runcard.champ { border-color: #6b5718; background: linear-gradient(135deg, #3a2f0c 0%, var(--panel) 70%); }
+.runcard.close { border-color: #4b4220; }
+.rc-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.rc-num { font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rc-meta { font-size: 12px; color: var(--muted); }
+.rc-title { font-size: 17px; font-weight: 700; margin: 4px 0 10px; }
+.runcard.champ .rc-title { color: var(--gold); }
+.pips { display: flex; gap: 5px; margin-bottom: 10px; }
+.pip { flex: 1; height: 8px; border-radius: 4px; background: var(--line); }
+.pip.ok { background: var(--c); }
+.pip.ko { background: transparent; outline: 2px solid var(--loss); outline-offset: -2px; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--panel2); border: 1px solid var(--line); color: var(--fg); }

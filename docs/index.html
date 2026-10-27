@@ -27,14 +27,8 @@
   <p class="sub">Each dot is one run. Higher means deeper into the gauntlet. Gold marks a run that reached the Champion.</p>
   <div class="card"><div id="chart" style="min-height:260px"></div></div>
 
-  <h2>Every run</h2>
-  <input class="search" id="q" placeholder="Search runs by Pokémon, gym or run number">
-  <div class="tbox">
-    <table>
-      <thead><tr><th class="num">Run</th><th>Volt brain</th><th>Result</th><th>Team</th><th></th></tr></thead>
-      <tbody id="runs"></tbody>
-    </table>
-  </div>
+  <h2>Latest 10 runs</h2>
+  <div class="runlist" id="runs"></div>
 
   <h2>Gym leaders</h2>
   <div class="games" id="gyms"></div>
@@ -56,6 +50,7 @@
     document.getElementById('headline').innerHTML = '';
     document.getElementById('headline').append('👑 Volt v' + status.champion.version + ' is the Champion');
     document.getElementById('subline').textContent = `He cleared all 8 gyms and beat Champion Nexus on run ${status.champion.run} of ${runs.length}.`;
+    document.getElementById('subline').after(el('a', {class: 'btn', href: 'run.html?r=' + status.champion.run}, '▶ Watch the title run'));
   } else {
     document.getElementById('headline').textContent = status.finished ? 'No champion yet' : 'The gauntlet is running';
     document.getElementById('subline').textContent = runs.length
@@ -109,18 +104,23 @@
   };
   draw(); addEventListener('resize', draw);
 
-  // Runs table
-  const tbody = document.getElementById('runs');
-  const render = q => {
-    tbody.innerHTML = '';
-    const list = runs.slice().reverse().filter(r => !q || `${r.run} ${r.team.join(' ')} ${r.reached}`.toLowerCase().includes(q));
-    for (const r of list.slice(0, 600)) {
-      const res = r.champion ? el('span', {class: 'gold'}, '👑 Became Champion') : el('span', {class: r.depth >= 8 ? 'gold' : 'loss'}, 'Lost to ' + stageName(r.depth));
-      tbody.append(el('tr', {}, el('td', {class: 'num'}, r.run), el('td', {}, 'v' + r.brainVersion), el('td', {}, res),
-        el('td', {class: 'mons'}, r.team.join(', ')), el('td', {}, el('a', {class: 'btn ghost', href: 'run.html?r=' + r.run}, `Watch (${r.games})`))));
-    }
-  };
-  render(''); document.getElementById('q').addEventListener('input', e => render(e.target.value.toLowerCase()));
+  // Latest 10 runs as cards
+  const runTitle = r => r.champion ? '👑 Won the title'
+    : r.depth >= 8 ? 'Fell to Champion Nexus'
+    : `Fell at Gym ${r.depth + 1} · ${gyms[r.depth].leader}'s ${gyms[r.depth].type} Gym`;
+  const list = document.getElementById('runs');
+  for (const r of runs.slice(-10).reverse()) {
+    const pips = el('div', {class: 'pips'}, ...Array.from({length: 9}, (_, i) => {
+      const state = i < r.depth ? 'ok' : (i === r.depth && !r.champion) ? 'ko' : 'off';
+      const c = i < 8 ? typeVar(gyms[i].type) : 'var(--gold)';
+      return el('span', {class: 'pip ' + state, style: `--c:${c}`, title: i < 8 ? `Gym ${i + 1}` : 'Champion'});
+    }));
+    list.append(el('a', {class: 'runcard' + (r.champion ? ' champ' : r.depth >= 8 ? ' close' : ''), href: 'run.html?r=' + r.run},
+      el('div', {class: 'rc-top'}, el('span', {class: 'rc-num'}, 'Run ' + r.run), el('span', {class: 'rc-meta'}, `Volt v${r.brainVersion} · ${r.games} battles`)),
+      el('div', {class: 'rc-title'}, runTitle(r)),
+      pips,
+      el('div', {class: 'chips'}, ...r.team.map(m => el('span', {class: 'chip'}, m)))));
+  }
 
   // Gyms
   document.getElementById('gyms').append(...gyms.map(g => el('div', {class: 'game', style: `--c:${typeVar(g.type)}`},

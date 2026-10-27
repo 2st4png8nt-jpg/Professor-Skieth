@@ -53,8 +53,11 @@
       var r = parseInt(q.get('r') || '1'), gi = parseInt(q.get('g') || '0');
       var run = JSON.parse(getText('runs/run-' + String(r).padStart(4, '0') + '.json.gz'));
       var gm = run.games[gi];
-      log = gm.log; title = gm.p1 + ' vs. ' + gm.p2;
-      sub = 'Gauntlet run ' + r + ' · ' + gm.stageName + ' · game ' + gm.game + ' · ' + (gm.won ? 'Volt wins' : 'Volt loses') + ' in ' + gm.turns + ' turns';
+      log = gm.log;
+      var where = gm.stage === 'Champion' ? 'Title match vs. Champion Nexus' : 'Gym ' + gm.badge + ' · ' + gm.stageName.replace('Gym Leader ', '');
+      title = where + ' · Game ' + gm.game;
+      var volt = gm.p1.indexOf('Volt') === 0 ? gm.p1 : gm.p2;
+      sub = 'Run ' + r + ' · ' + volt + ' · ' + (gm.won ? 'Volt wins' : 'Volt loses') + ' in ' + gm.turns + ' turns';
       if (gi > 0) prev = 'watch.html?r=' + r + '&g=' + (gi - 1);
       if (gi < run.games.length - 1) next = 'watch.html?r=' + r + '&g=' + (gi + 1);
       back = ['run.html?r=' + r, 'Run ' + r + ' overview'];
