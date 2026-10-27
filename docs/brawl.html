@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Brawl — Professor Skieth's League</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">Professor <span>Skieth</span>'s League</a>
+    <nav><a href="index.html">Gauntlet</a><a class="on" href="brawl.html">Brawl</a><a href="league.html">League battles</a></nav>
+  </header>
+  <section class="hero champ" id="hero"><h1 id="h">The Brawl</h1><p class="sub" id="s">The champions haven't been decided yet. Check back soon.</p></section>
+  <h2>The fighters</h2>
+  <div class="games" id="fighters"></div>
+  <h2>Round robin · best of 5</h2>
+  <div class="card"><table><thead><tr><th class="num">#</th><th>Champion</th><th class="num">Series</th><th class="num">Games</th></tr></thead><tbody id="table"></tbody></table></div>
+  <h2>Every series</h2>
+  <div id="series"></div>
+</div>
+<script src="common.js"></script>
+<script>
+(async () => {
+  const {el} = PS;
+  const d = await PS.json('data/brawl.json').catch(() => null);
+  if (!d) return;
+  document.getElementById('h').textContent = `👑 ${d.champion} is the Grand Champion`;
+  const fin = d.results.find(r => r.stage === 'Grand Final');
+  document.getElementById('s').textContent = `Won the best-of-7 Grand Final ${Math.max(fin.wa, fin.wb)}-${Math.min(fin.wa, fin.wb)} over ${fin.winner === fin.a ? fin.b : fin.a}.`;
+  document.getElementById('fighters').append(...d.fighters.map(f => el('div', {class: 'game', style: `--c:${f.name === d.champion ? 'var(--gold)' : 'var(--accent)'}`},
+    el('div', {style: 'font-weight:700;font-size:17px'}, (f.name === d.champion ? '👑 ' : '') + f.name),
+    el('div', {class: 'muted', style: 'font-size:13px'}, `${f.origin} · ${f.version}`),
+    el('div', {class: 'chips', style: 'margin-top:8px'}, ...f.teamText.trim().split(/\n\s*\n/).map(b => el('span', {class: 'chip'}, b.split('\n')[0].split(' @')[0].replace(/ \([MF]\)/, '')))),
+    el('details', {}, el('summary', {class: 'muted', style: 'cursor:pointer;font-size:13px;margin-top:6px'}, 'Showdown team'), el('pre', {}, f.teamText)))));
+  document.getElementById('table').append(...d.standings.map((s, i) => el('tr', {}, el('td', {class: 'num'}, i + 1), el('td', {style: 'font-weight:700'}, s.name),
+    el('td', {class: 'num'}, `${s.sw}-${s.sl}`), el('td', {class: 'num'}, `${s.gw}-${s.gl}`))));
+  const box = document.getElementById('series');
+  d.results.slice().reverse().forEach(r => {
+    const gs = d.games.map((g, i) => ({...g, i})).filter(g => g.stage === r.stage && g.a === r.a && g.b === r.b);
+    box.append(el('h2', {style: 'font-size:16px'}, el('span', {class: 'pill', style: `--c:${r.stage === 'Grand Final' ? 'var(--gold)' : 'var(--accent)'}`}, r.stage),
+      ` ${r.a} ${r.wa}-${r.wb} ${r.b}`));
+    box.append(el('div', {class: 'games'}, ...gs.map(g => el('a', {class: 'game', href: `watch.html?b=${g.i}`, style: '--c:var(--accent);display:block;color:inherit;text-decoration:none'},
+      el('div', {style: 'font-weight:700'}, `Game ${g.game} · ${g.winner} wins`), el('div', {class: 'muted', style: 'font-size:13px'}, `${g.turns} turns`),
+      el('div', {style: 'margin-top:6px'}, el('span', {class: 'btn'}, '▶ Watch'))))));
+  });
+})();
+</script>
+</body>
+</html>

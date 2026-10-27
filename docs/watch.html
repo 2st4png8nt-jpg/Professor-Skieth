@@ -16,7 +16,7 @@
 <div class="wrap">
   <header class="top">
     <a class="brand" href="index.html">Professor <span>Skieth</span>'s League</a>
-    <nav><a href="index.html">Gauntlet</a><a href="league.html">League battles</a></nav>
+    <nav><a href="index.html">Gauntlet</a><a href="brawl.html">Brawl</a><a href="league.html">League battles</a></nav>
   </header>
 <script>
 // Everything here runs while the page is still loading, like a downloaded Showdown replay file.
@@ -39,7 +39,14 @@
   function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   var q = new URLSearchParams(location.search), S = q.get('s') || '2', SQ = 's=' + S, RD = S === '1' ? 'runs/' : S === '2' ? 's2/runs/' : S + '/runs/', log, title, sub, prev = null, next = null, back;
   try {
-    if (q.get('l')) {
+    if (q.get('b') !== null) {
+      var bi = parseInt(q.get('b')), all = JSON.parse(getText('brawl/games.json.gz')), bg = all[bi];
+      log = bg.log; title = bg.stage + ' · ' + bg.a + ' vs. ' + bg.b + ' · Game ' + bg.game;
+      sub = bg.winner + ' wins in ' + bg.turns + ' turns';
+      if (bi > 0) prev = 'watch.html?b=' + (bi - 1);
+      if (bi < all.length - 1) next = 'watch.html?b=' + (bi + 1);
+      back = ['brawl.html', 'The Brawl'];
+    } else if (q.get('l')) {
       var id = q.get('l');
       log = getText('league/' + id + '.log.gz');
       var list = JSON.parse(getText('data/league.json'));
