@@ -13,7 +13,7 @@
     <nav><a id="home" href="index.html">Gauntlet</a><a href="league.html">League battles</a></nav>
   </header>
   <section class="hero" id="hero"><h1 id="h">Loading run…</h1><p class="sub" id="s"></p><div id="nav"></div></section>
-  <h2>Volt's team this run</h2>
+  <h2 id="teamh">Team this run</h2>
   <div class="card"><table><thead><tr><th>Pokémon</th><th>On the team since</th><th class="num">Damage dealt (% HP)</th><th class="num">KOs</th></tr></thead><tbody id="team"></tbody></table>
     <details style="margin-top:10px"><summary class="muted" style="cursor:pointer">Showdown team</summary><pre id="paste"></pre></details></div>
   <h2>Battles</h2>
@@ -27,27 +27,36 @@
   const n = parseInt(new URLSearchParams(location.search).get('r') || '1');
   const [status, data] = await Promise.all([PS.json(PS.dataDir + 'status.json'), PS.gunzipFetch(`${PS.runsDir}run-${PS.pad(n)}.json.gz`).then(JSON.parse)]);
   const gyms = status.gyms;
+  const CH = data.challenger || status.challenger || 'Volt', G = gyms.length;
+  document.getElementById('teamh').textContent = `${CH}'s team this run`;
   document.getElementById('home').href = 'index.html?' + PS.sq;
   document.querySelector('.brand').href = 'index.html?' + PS.sq;
-  const stageInfo = key => { const g = gyms.find(x => x.leader === key); return g ? {label: `Gym ${g.badge} · ${g.leader} (${g.type})`, c: typeVar(g.type)} : {label: 'Champion Nexus', c: 'var(--gold)'}; };
+  const stageInfo = key => { const g = gyms.find(x => x.leader === key); return g ? {label: `Gym ${g.badge} · ${g.leader} (${g.type})`, c: typeVar(g.type)} : {label: status.championName || 'Champion Nexus', c: 'var(--gold)'}; };
   document.title = `Run ${n} — Professor Skieth's League`;
   if (data.champion) document.getElementById('hero').classList.add('champ');
   const g0 = gyms.find(x => x.leader === data.reached);
-  document.getElementById('h').textContent = data.champion ? `Run ${n} · 👑 Won the title` : data.depth >= 8 ? `Run ${n} · Fell to Champion Nexus` : `Run ${n} · Fell at Gym ${g0.badge}, ${g0.leader}'s ${g0.type} Gym`;
-  document.getElementById('s').textContent = `Volt v${data.brainVersion} · ` + data.series.map(s => `${s.stage === 'Champion' ? 'Champion' : 'Gym ' + gyms.find(x => x.leader === s.stage).badge} ${s.score}`).join(' → ');
+  document.getElementById('h').textContent = data.champion ? `Run ${n} · 👑 Won the title` : data.depth >= G ? `Run ${n} · Fell to ${status.championName || 'Champion Nexus'}` : `Run ${n} · Fell at Gym ${g0.badge}, ${g0.leader}'s ${g0.type} Gym`;
+  document.getElementById('s').textContent = `${CH} v${data.version || data.brainVersion} · ` + data.series.map(s => `${s.stage === 'Champion' ? 'Champion' : 'Gym ' + gyms.find(x => x.leader === s.stage).badge} ${s.score}`).join(' → ');
   document.getElementById('nav').append(
     n > 1 ? el('a', {class: 'btn ghost', href: `run.html?${PS.sq}&r=${n - 1}`}, '← Run ' + (n - 1)) : '', ' ',
     el('a', {class: 'btn ghost', href: `run.html?${PS.sq}&r=${n + 1}`}, 'Run ' + (n + 1) + ' →'));
   document.getElementById('team').append(...data.team.map(t => el('tr', {}, el('td', {}, t.species), el('td', {}, t.joined === n ? el('span', {class: 'win'}, 'New this run') : 'Run ' + t.joined),
     el('td', {class: 'num'}, t.dmg + '%'), el('td', {class: 'num'}, t.kos))));
   document.getElementById('paste').textContent = data.teamText;
+  if (data.teamChange || data.brainLearned) {
+    const note = el('div', {class: 'card', style: 'margin-top:12px;border-color:#3b4a2a'},
+      el('div', {style: 'font-weight:700;margin-bottom:4px'}, `What ${CH} changed after this run`),
+      ...(data.teamChange || []).map(c => el('div', {class: 'mons'}, '• ' + c)),
+      data.brainLearned ? el('div', {class: 'mons'}, '• Adjusted battle strategy') : '');
+    document.getElementById('paste').closest('.card').after(note);
+  }
   const box = document.getElementById('games');
   let cur = null;
   data.games.forEach((g, i) => {
     if (g.stage !== cur) { cur = g.stage; const si = stageInfo(g.stage); box.append(el('h2', {style: 'font-size:16px'}, el('span', {class: 'pill', style: `--c:${si.c}`}, si.label))); box.append(el('div', {class: 'games', id: 'st-' + g.stage})); }
     const si = stageInfo(g.stage);
     document.getElementById('st-' + g.stage).append(el('a', {class: 'game', href: `watch.html?${PS.sq}&r=${n}&g=${i}`, style: `--c:${g.won ? 'var(--win)' : 'var(--loss)'};display:block;color:inherit;text-decoration:none`},
-      el('div', {style: 'font-weight:700'}, `Game ${g.game} · ${g.won ? 'Volt wins' : 'Volt loses'}`),
+      el('div', {style: 'font-weight:700'}, `Game ${g.game} · ${g.won ? CH + ' wins' : CH + ' loses'}`),
       el('div', {class: 'muted', style: 'font-size:13px'}, `${g.turns} turns`),
       el('div', {style: 'margin-top:6px'}, el('span', {class: 'btn'}, '▶ Watch'))));
   });

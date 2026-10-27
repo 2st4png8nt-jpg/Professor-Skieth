@@ -21,7 +21,7 @@
   </section>
 
   <h2>The road to the title</h2>
-  <p class="sub">Every run starts at Gym 1 with the challenger's current team. One lost best-of-3 series and it's back to the start. Gym leaders never change. Only Volt and the Champion learn.</p>
+  <p class="sub" id="rules">Every run starts at Gym 1 with the challenger's current team. One lost best-of-3 series and it's back to the start. Gym leaders never change. Only the challenger and the Champion learn.</p>
   <div class="badges" id="badges"></div>
 
   <h2>How far each run got</h2>
@@ -39,67 +39,69 @@
 <script src="common.js"></script>
 <script>
 (async () => {
-  const {el, typeVar, STAGES} = PS;
+  const {el, typeVar} = PS;
+  const seasons = await PS.json('data/seasons.json').catch(() => [{key: '1', label: 'Season 1'}]);
+  const list0 = seasons.map(x => typeof x === 'object' ? x : {key: String(x), label: x === 2 ? 'Season 2 · Champions' : 'Season 1 · Gen 9 Random'});
+  if (!PS.seasonGiven) PS.season = list0[list0.length - 1].key;
+  document.getElementById('seasons').append(...list0.slice().reverse().map(s => el('a', {class: 'season' + (s.key === PS.season ? ' on' : ''), href: 'index.html?s=' + s.key}, s.label)));
   const [status, runs] = await Promise.all([PS.json(PS.dataDir + 'status.json'), PS.json(PS.dataDir + 'runs.json')]);
-  const gyms = status.gyms;
-  const seasons = await PS.json('data/seasons.json').catch(() => [1]);
-  document.getElementById('seasons').append(...seasons.slice().reverse().map(s => el('a', {class: 'season' + (s === PS.season ? ' on' : ''), href: 'index.html?s=' + s},
-    s === 2 ? 'Season 2 · Champions' : 'Season 1 · Gen 9 Random')));
-  if (status.format) document.getElementById('foot').dataset.format = status.format;
-  const stageName = d => d >= 8 ? 'the Champion' : `Gym ${d + 1} (${gyms[d].leader}, ${gyms[d].type})`;
+  const gyms = status.gyms, G = gyms.length;
+  const CH = status.challenger || 'Volt';
+  const CHAMP = status.championName || 'Champion Nexus';
+  const CHAMP_T = status.championDesc || 'Nexus · All-Star';
+  if (status.rules) document.getElementById('rules').textContent = status.rules;
+  const gymLabel = d => `${gyms[d].leader}'s ${gyms[d].type} Gym`;
+  const stageName = d => d >= G ? CHAMP : `Gym ${d + 1} (${gymLabel(d)})`;
   const best = runs.reduce((a, r) => Math.max(a, r.depth), 0);
   const last = runs[runs.length - 1];
   const hero = document.getElementById('hero');
   if (status.champion) {
     hero.classList.add('champ');
-    document.getElementById('headline').innerHTML = '';
-    document.getElementById('headline').append('👑 Volt v' + status.champion.version + ' is the Champion');
-    document.getElementById('subline').textContent = `He cleared all 8 gyms and beat Champion Nexus on run ${status.champion.run} of ${runs.length}.`;
+    document.getElementById('headline').textContent = `👑 ${CH} v${status.champion.version} is the Champion`;
+    document.getElementById('subline').textContent = `Cleared all ${G} gyms and beat ${CHAMP} on run ${status.champion.run} of ${runs.length}.`;
     document.getElementById('subline').after(el('a', {class: 'btn', href: 'run.html?' + PS.sq + '&r=' + status.champion.run}, '▶ Watch the title run'));
   } else {
-    document.getElementById('headline').textContent = status.finished ? 'No champion yet' : 'The gauntlet is running';
+    document.getElementById('headline').textContent = status.finished ? `${CH} came up short` : (status.headline || `${CH}'s run is underway`);
     document.getElementById('subline').textContent = runs.length
-      ? `Latest: run ${last.run}, Volt v${last.brainVersion}, ${last.champion ? 'won the title' : 'lost to ' + stageName(last.depth)}. Furthest anyone has reached: ${best >= 8 ? 'the Champion' : 'Gym ' + (best + 1)}.`
+      ? `Latest: run ${last.run}, ${CH} v${last.version || last.brainVersion}, lost to ${stageName(last.depth)}. Furthest so far: ${best >= G ? CHAMP : 'Gym ' + (best + 1)}.`
       : 'Waiting for the first run.';
   }
   const tiles = [
-    ['Runs', runs.length], ['Furthest', best >= 9 ? 'Champion ✓' : STAGES[Math.min(best, 8)]],
-    ['Volt brain', 'v' + (last ? last.brainVersion : 1)], ['Champion brain', 'v' + (last ? last.champVersion : 1)],
+    ['Runs', runs.length], ['Furthest', best > G ? 'Title ✓' : best === G ? 'Champion' : 'Gym ' + (best + 1)],
+    [CH, 'v' + (last ? (last.version || last.brainVersion) : 1)], [CHAMP.replace(/^Champion /, '') + ' (Champion)', 'v' + (last ? last.champVersion : 1)],
     ['Battles saved', runs.reduce((a, r) => a + r.games, 0)],
   ];
   document.getElementById('tiles').append(...tiles.map(([l, v]) => el('div', {class: 'tile'}, el('div', {class: 'l'}, l), el('div', {class: 'v'}, v))));
 
-  // Badges: how many runs cleared each stage
   const cleared = i => runs.filter(r => r.depth > i).length;
   const reached = i => runs.filter(r => r.depth >= i).length;
-  const stages = [...gyms.map(g => ({n: 'Gym ' + g.badge, t: `${g.leader} · ${g.type}`, c: typeVar(g.type)})), {n: 'Champion', t: 'Nexus · All-Star', c: 'var(--gold)'}];
+  const stages = [...gyms.map(g => ({n: 'Gym ' + g.badge, t: `${g.leader} · ${g.type}`, c: typeVar(g.type)})), {n: 'Champion', t: CHAMP_T, c: 'var(--gold)'}];
   document.getElementById('badges').append(...stages.map((s, i) => {
     const rc = reached(i), cc = cleared(i);
     return el('div', {class: 'badge', style: `--c:${s.c}`}, el('div', {class: 'n'}, s.n), el('div', {class: 't'}, s.t),
       el('div', {class: 's'}, `${rc} runs got here · ${cc} won`), el('div', {class: 'bar'}, el('i', {style: `width:${rc ? Math.round(100 * cc / rc) : 0}%`})));
   }));
 
-  // Chart: depth by run
   const box = document.getElementById('chart');
   const draw = () => {
     box.innerHTML = '';
     if (!runs.length) return;
+    const top = G + 1;
     const W = box.clientWidth || 600, H = 260, L = 76, R = 12, T = 10, B = 26;
     const x = r => L + (runs.length === 1 ? 0 : (r - 1) / (runs.length - 1)) * (W - L - R);
-    const y = d => T + (9 - d) / 9 * (H - T - B);
+    const y = d => T + (top - d) / top * (H - T - B);
     const ns = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('width', '100%');
     const add = (tag, a) => { const e = document.createElementNS(ns, tag); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
-    for (let d = 0; d <= 9; d++) {
+    for (let d = 0; d <= top; d++) {
       add('line', {x1: L, x2: W - R, y1: y(d), y2: y(d), stroke: '#2b3440'});
-      const t = add('text', {x: L - 8, y: y(d) + 4, 'text-anchor': 'end'}); t.textContent = d === 0 ? 'Gym 1' : d === 9 ? 'Title' : d === 8 ? 'Champion' : 'Gym ' + (d + 1);
+      const t = add('text', {x: L - 8, y: y(d) + 4, 'text-anchor': 'end'}); t.textContent = d === top ? 'Title' : d === G ? 'Champion' : 'Gym ' + (d + 1);
     }
-    let bestSoFar = 0; let path = '';
+    let bestSoFar = 0, path = '';
     runs.forEach((r, i) => { bestSoFar = Math.max(bestSoFar, r.depth); path += `${i ? 'L' : 'M'}${x(r.run)},${y(bestSoFar)}`; });
     add('path', {d: path, fill: 'none', stroke: '#f4c542', 'stroke-width': 2, 'stroke-opacity': .5});
     for (const r of runs) {
-      const d = r.depth;
-      const c = add('circle', {cx: x(r.run), cy: y(d) + (Math.sin(r.run * 12.9) * 3), r: 3.2, fill: r.depth >= 8 ? '#f4c542' : '#6aa8ff', 'fill-opacity': .75, style: 'cursor:pointer'});
+      const c = add('circle', {cx: x(r.run), cy: y(r.depth) + (Math.sin(r.run * 12.9) * 3), r: 3.2, fill: r.depth >= G ? '#f4c542' : '#6aa8ff', 'fill-opacity': .75, style: 'cursor:pointer'});
       const tt = document.createElementNS(ns, 'title'); tt.textContent = `Run ${r.run}: ${r.champion ? 'CHAMPION' : 'lost to ' + stageName(r.depth)}`; c.appendChild(tt);
       c.addEventListener('click', () => { location.href = 'run.html?' + PS.sq + '&r=' + r.run; });
     }
@@ -109,31 +111,28 @@
   };
   draw(); addEventListener('resize', draw);
 
-  // Latest 10 runs as cards
-  const runTitle = r => r.champion ? '👑 Won the title'
-    : r.depth >= 8 ? 'Fell to Champion Nexus'
-    : `Fell at Gym ${r.depth + 1} · ${gyms[r.depth].leader}'s ${gyms[r.depth].type} Gym`;
+  const runTitle = r => r.champion ? '👑 Won the title' : r.depth >= G ? `Fell to ${CHAMP}` : `Fell at Gym ${r.depth + 1} · ${gymLabel(r.depth)}`;
   const list = document.getElementById('runs');
   for (const r of runs.slice(-10).reverse()) {
-    const pips = el('div', {class: 'pips'}, ...Array.from({length: 9}, (_, i) => {
+    const pips = el('div', {class: 'pips'}, ...Array.from({length: G + 1}, (_, i) => {
       const state = i < r.depth ? 'ok' : (i === r.depth && !r.champion) ? 'ko' : 'off';
-      const c = i < 8 ? typeVar(gyms[i].type) : 'var(--gold)';
-      return el('span', {class: 'pip ' + state, style: `--c:${c}`, title: i < 8 ? `Gym ${i + 1}` : 'Champion'});
+      const c = i < G ? typeVar(gyms[i].type) : 'var(--gold)';
+      return el('span', {class: 'pip ' + state, style: `--c:${c}`, title: i < G ? `Gym ${i + 1}` : 'Champion'});
     }));
-    list.append(el('a', {class: 'runcard' + (r.champion ? ' champ' : r.depth >= 8 ? ' close' : ''), href: 'run.html?' + PS.sq + '&r=' + r.run},
-      el('div', {class: 'rc-top'}, el('span', {class: 'rc-num'}, 'Run ' + r.run), el('span', {class: 'rc-meta'}, `Volt v${r.brainVersion} · ${r.games} battles`)),
+    list.append(el('a', {class: 'runcard' + (r.champion ? ' champ' : r.depth >= G ? ' close' : ''), href: 'run.html?' + PS.sq + '&r=' + r.run},
+      el('div', {class: 'rc-top'}, el('span', {class: 'rc-num'}, 'Run ' + r.run), el('span', {class: 'rc-meta'}, `${CH} v${r.version || r.brainVersion} · ${r.games} battles`)),
       el('div', {class: 'rc-title'}, runTitle(r)),
       pips,
-      el('div', {class: 'chips'}, ...r.team.map(m => el('span', {class: 'chip'}, m)))));
+      el('div', {class: 'chips'}, ...r.team.map(m => el('span', {class: 'chip'}, m))),
+      r.teamChange ? el('div', {class: 'mons', style: 'margin-top:8px'}, '↻ ' + r.teamChange.join('; ')) : ''));
   }
 
-  // Gyms
   document.getElementById('gyms').append(...gyms.map(g => el('div', {class: 'game', style: `--c:${typeVar(g.type)}`},
     el('div', {}, el('span', {class: 'pill', style: `--c:${typeVar(g.type)}`}, `Gym ${g.badge} · ${g.type}`)),
     el('div', {style: 'font-weight:700;margin-top:6px'}, `${g.leader}, ${g.title}`),
     el('div', {class: 'mons'}, g.team.split('\n\n').map(s => s.split(' @')[0].split('\n')[0]).join(', ')),
     el('details', {}, el('summary', {class: 'muted', style: 'cursor:pointer;font-size:13px'}, 'Showdown team'), el('pre', {}, g.team)))));
-  document.getElementById('foot').textContent = `Battles run on the official Pokémon Showdown engine; replays play in Showdown's own viewer. Updated ${new Date(status.updated).toLocaleString()}.`;
+  document.getElementById('foot').textContent = `${status.format || ''} · Battles run on the official Pokémon Showdown engine; replays play in Showdown's own viewer. Updated ${new Date(status.updated).toLocaleString()}.`;
 })();
 </script>
 </body>

@@ -37,7 +37,7 @@
     return new TextDecoder().decode(b);
   }
   function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-  var q = new URLSearchParams(location.search), S = q.get('s') === '1' ? 1 : 2, SQ = 's=' + S, RD = S === 1 ? 'runs/' : 's2/runs/', log, title, sub, prev = null, next = null, back;
+  var q = new URLSearchParams(location.search), S = q.get('s') || '2', SQ = 's=' + S, RD = S === '1' ? 'runs/' : S === '2' ? 's2/runs/' : S + '/runs/', log, title, sub, prev = null, next = null, back;
   try {
     if (q.get('l')) {
       var id = q.get('l');
@@ -54,13 +54,14 @@
       var run = JSON.parse(getText(RD + 'run-' + String(r).padStart(4, '0') + '.json.gz'));
       var gm = run.games[gi];
       log = gm.log;
-      var where = gm.stage === 'Champion' ? 'Title match vs. Champion Nexus' : 'Gym ' + gm.badge + ' · ' + gm.stageName.replace('Gym Leader ', '');
+      var where = gm.stage === 'Champion' ? 'Title match vs. ' + gm.stageName : 'Gym ' + gm.badge + ' · ' + gm.stageName.replace('Gym Leader ', '');
       title = where + ' · Game ' + gm.game;
-      var volt = gm.p1.indexOf('Volt') === 0 ? gm.p1 : gm.p2;
-      sub = 'Run ' + r + ' · ' + volt + ' · ' + (gm.won ? 'Volt wins' : 'Volt loses') + ' in ' + gm.turns + ' turns';
+      var CH = (gm.p1.indexOf('Gym Leader') === 0 || gm.p1.indexOf('Champion') === 0 ? gm.p2 : gm.p1).split(' v')[0];
+      var volt = gm.p1.indexOf(CH) === 0 ? gm.p1 : gm.p2;
+      sub = 'Run ' + r + ' · ' + volt + ' · ' + (gm.won ? CH + ' wins' : CH + ' loses') + ' in ' + gm.turns + ' turns';
       if (gi > 0) prev = 'watch.html?' + SQ + '&r=' + r + '&g=' + (gi - 1);
       if (gi < run.games.length - 1) next = 'watch.html?' + SQ + '&r=' + r + '&g=' + (gi + 1);
-      back = ['run.html?' + SQ + '&r=' + r, 'Season ' + S + ' · Run ' + r];
+      back = ['run.html?' + SQ + '&r=' + r, 'Run ' + r + ' overview'];
     }
   } catch (e) {
     document.write('<h1 style="font-size:24px">Battle not found.</h1><p class="sub">It may still be uploading. Try again in a few minutes.</p>');
