@@ -19,7 +19,7 @@
    "version": "v21"
   },
   {
-   "name": "Skieth",
+   "name": "Skeith",
    "origin": "Won the title on run 57",
    "teamText": "Mamoswine (M) @ Life Orb  \nAbility: Thick Fat  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- knockoff  \n- iciclecrash  \n- iceshard  \n- earthquake  \n\nMaushold @ Wide Lens  \nAbility: Technician  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- populationbomb  \n- bite  \n- encore  \n- tidyup  \n\nAraquanid (F) @ Leftovers  \nAbility: Water Bubble  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- stickyweb  \n- liquidation  \n- mirrorcoat  \n- leechlife  \n\nOrthworm (M) @ Chesto Berry  \nAbility: Earth Eater  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- irontail  \n- bodypress  \n- coil  \n- rest  \n\nRaichu (F) @ Life Orb  \nAbility: Lightning Rod  \nLevel: 50  \nEVs: 2 HP / 32 SpA / 32 Spe  \nTimid Nature  \n- surf  \n- encore  \n- nastyplot  \n- thunderbolt  \n\nGarchomp (M) @ Leftovers  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- spikes  \n- stealthrock  \n- earthquake  \n- outrage  \n\n",
    "version": "v26"
@@ -41,7 +41,7 @@
    "gl": 5
   },
   {
-   "name": "Skieth",
+   "name": "Skeith",
    "sw": 1,
    "sl": 2,
    "gw": 4,
@@ -74,10 +74,10 @@
   },
   {
    "a": "Volt",
-   "b": "Skieth",
+   "b": "Skeith",
    "wa": 0,
    "wb": 3,
-   "winner": "Skieth",
+   "winner": "Skeith",
    "stage": "Round robin"
   },
   {
@@ -90,7 +90,7 @@
   },
   {
    "a": "Red",
-   "b": "Skieth",
+   "b": "Skeith",
    "wa": 3,
    "wb": 1,
    "winner": "Red",
@@ -98,7 +98,7 @@
   },
   {
    "a": "Blue",
-   "b": "Skieth",
+   "b": "Skeith",
    "wa": 3,
    "wb": 0,
    "winner": "Blue",
@@ -199,31 +199,31 @@
    "stage": "Round robin",
    "game": 1,
    "p1": "Volt",
-   "p2": "Skieth",
-   "winner": "Skieth",
+   "p2": "Skeith",
+   "winner": "Skeith",
    "turns": 15,
    "a": "Volt",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 2,
-   "p1": "Skieth",
+   "p1": "Skeith",
    "p2": "Volt",
-   "winner": "Skieth",
+   "winner": "Skeith",
    "turns": 14,
    "a": "Volt",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 3,
    "p1": "Volt",
-   "p2": "Skieth",
-   "winner": "Skieth",
+   "p2": "Skeith",
+   "winner": "Skeith",
    "turns": 14,
    "a": "Volt",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
@@ -269,71 +269,71 @@
    "stage": "Round robin",
    "game": 1,
    "p1": "Red",
-   "p2": "Skieth",
+   "p2": "Skeith",
    "winner": "Red",
    "turns": 15,
    "a": "Red",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 2,
-   "p1": "Skieth",
+   "p1": "Skeith",
    "p2": "Red",
-   "winner": "Skieth",
+   "winner": "Skeith",
    "turns": 18,
    "a": "Red",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 3,
    "p1": "Red",
-   "p2": "Skieth",
+   "p2": "Skeith",
    "winner": "Red",
    "turns": 16,
    "a": "Red",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 4,
-   "p1": "Skieth",
+   "p1": "Skeith",
    "p2": "Red",
    "winner": "Red",
    "turns": 15,
    "a": "Red",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 1,
    "p1": "Blue",
-   "p2": "Skieth",
+   "p2": "Skeith",
    "winner": "Blue",
    "turns": 16,
    "a": "Blue",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 2,
-   "p1": "Skieth",
+   "p1": "Skeith",
    "p2": "Blue",
    "winner": "Blue",
    "turns": 17,
    "a": "Blue",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Round robin",
    "game": 3,
    "p1": "Blue",
-   "p2": "Skieth",
+   "p2": "Skeith",
    "winner": "Blue",
    "turns": 16,
    "a": "Blue",
-   "b": "Skieth"
+   "b": "Skeith"
   },
   {
    "stage": "Grand Final",
