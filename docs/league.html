@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>League battles — Professor Skieth's League</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">Professor <span>Skieth</span>'s League</a>
+    <nav><a href="index.html">Gauntlet</a><a class="on" href="league.html">League battles</a></nav>
+  </header>
+  <h1>League battles</h1>
+  <p class="sub">Where it started: the 14-agent round robin (Gen 9 Random Battle, best of 3), then the 8 gym leaders' own league (Gen 9 Monotype).</p>
+  <h2>Round-robin standings</h2>
+  <div class="tbox" style="max-height:none"><table><thead><tr><th class="num">#</th><th>Agent</th><th>Style</th><th class="num">Series</th><th class="num">Games</th><th class="num">Elo</th></tr></thead><tbody id="st"></tbody></table></div>
+  <h2>Every battle</h2>
+  <input class="search" id="q" placeholder="Search by agent or battle ID">
+  <div class="tbox"><table><thead><tr><th>ID</th><th>Phase</th><th>Player 1</th><th>Player 2</th><th>Winner</th><th class="num">Turns</th><th></th></tr></thead><tbody id="b"></tbody></table></div>
+</div>
+<script src="common.js"></script>
+<script>
+(async () => {
+  const {el} = PS;
+  const [st, list] = await Promise.all([PS.json('data/standings.json'), PS.json('data/league.json')]);
+  document.getElementById('st').append(...st.map(s => el('tr', {}, el('td', {class: 'num'}, s.rank), el('td', {style: s.rank <= 8 ? 'font-weight:700' : ''}, s.name + (s.rank <= 8 ? ' ★' : '')),
+    el('td', {}, s.style), el('td', {class: 'num'}, `${s.seriesW}-${s.seriesL}`), el('td', {class: 'num'}, `${s.gameW}-${s.gameL}`), el('td', {class: 'num'}, s.elo))));
+  const tb = document.getElementById('b');
+  const render = q => {
+    tb.innerHTML = '';
+    for (const g of list.filter(g => !q || `${g.id} ${g.p1} ${g.p2}`.toLowerCase().includes(q))) {
+      tb.append(el('tr', {}, el('td', {}, g.id), el('td', {}, g.phase === 'gym-league' ? 'Gym league' : 'Round robin'), el('td', {}, g.p1), el('td', {}, g.p2),
+        el('td', {}, g.winner || 'Tie'), el('td', {class: 'num'}, g.turns), el('td', {}, el('a', {class: 'btn ghost', href: `watch.html?l=${g.id}`}, '▶ Watch'))));
+    }
+  };
+  render(''); document.getElementById('q').addEventListener('input', e => render(e.target.value.toLowerCase()));
+})();
+</script>
+</body>
+</html>

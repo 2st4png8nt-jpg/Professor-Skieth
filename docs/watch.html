@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watch — Professor Skieth's League</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .viewer { background: #fff; color: #000; border-radius: 12px; padding: 10px 0; margin-top: 14px; overflow: hidden; }
+  .viewer .wrapper { max-width: 1180px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">Professor <span>Skieth</span>'s League</a>
+    <nav><a href="index.html">Gauntlet</a><a href="league.html">League battles</a></nav>
+  </header>
+  <h1 id="h" style="font-size:24px">Loading battle…</h1>
+  <p class="sub" id="s"></p>
+  <div id="nav"></div>
+  <div class="viewer" id="viewer"></div>
+  <p class="muted" style="font-size:12px">Playback uses Pokémon Showdown's official replay viewer, loaded from play.pokemonshowdown.com.</p>
+</div>
+<script src="common.js"></script>
+<script>
+(async () => {
+  const {el} = PS;
+  const q = new URLSearchParams(location.search);
+  let log, title, sub, prev = null, next = null, back;
+  if (q.get('l')) {
+    const id = q.get('l');
+    log = await PS.gunzipFetch(`league/${id}.log.gz`);
+    const list = await PS.json('data/league.json');
+    const i = list.findIndex(x => x.id === id), g = list[i];
+    title = `${g.p1} vs. ${g.p2}`; sub = `${g.phase === 'gym-league' ? 'Gym league' : 'Round robin'} · ${id} · winner ${g.winner} · ${g.turns} turns`;
+    if (i > 0) prev = `watch.html?l=${list[i - 1].id}`; if (i < list.length - 1) next = `watch.html?l=${list[i + 1].id}`;
+    back = ['league.html', 'All league battles'];
+  } else {
+    const r = parseInt(q.get('r') || '1'), gi = parseInt(q.get('g') || '0');
+    const run = JSON.parse(await PS.gunzipFetch(`runs/run-${PS.pad(r)}.json.gz`));
+    const g = run.games[gi];
+    log = g.log; title = `${g.p1} vs. ${g.p2}`;
+    sub = `Gauntlet run ${r} · ${g.stageName} · game ${g.game} · ${g.won ? 'Volt wins' : 'Volt loses'} in ${g.turns} turns`;
+    if (gi > 0) prev = `watch.html?r=${r}&g=${gi - 1}`; if (gi < run.games.length - 1) next = `watch.html?r=${r}&g=${gi + 1}`;
+    back = [`run.html?r=${r}`, `Run ${r} overview`];
+  }
+  document.title = title + ' — Professor Skieth\'s League';
+  document.getElementById('h').textContent = title;
+  document.getElementById('s').textContent = sub;
+  document.getElementById('nav').append(el('a', {class: 'btn ghost', href: back[0]}, '← ' + back[1]), ' ',
+    prev ? el('a', {class: 'btn ghost', href: prev}, 'Previous battle') : '', ' ', next ? el('a', {class: 'btn ghost', href: next}, 'Next battle') : '');
+  // Showdown's replay embed reads this exact structure.
+  const v = document.getElementById('viewer');
+  v.innerHTML = '<div class="wrapper replay-wrapper"><div class="battle"></div><div class="battle-log"></div><div class="replay-controls"></div><div class="replay-controls-2"></div></div>';
+  const data = document.createElement('script'); data.type = 'text/plain'; data.className = 'battle-log-data'; data.textContent = log;
+  v.querySelector('.wrapper').appendChild(data);
+  const s = document.createElement('script');
+  s.src = 'https://play.pokemonshowdown.com/js/replay-embed.js?version' + Math.floor(Date.now() / 864e5);
+  document.body.appendChild(s);
+})().catch(e => { document.getElementById('h').textContent = 'Battle not found.'; });
+</script>
+</body>
+</html>

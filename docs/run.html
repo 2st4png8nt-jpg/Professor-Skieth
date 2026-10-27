@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run — Professor Skieth's League</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">Professor <span>Skieth</span>'s League</a>
+    <nav><a href="index.html">Gauntlet</a><a href="league.html">League battles</a></nav>
+  </header>
+  <section class="hero" id="hero"><h1 id="h">Loading run…</h1><p class="sub" id="s"></p><div id="nav"></div></section>
+  <h2>Volt's team this run</h2>
+  <div class="card"><table><thead><tr><th>Pokémon</th><th>On the team since</th><th class="num">Damage dealt</th><th class="num">KOs</th></tr></thead><tbody id="team"></tbody></table>
+    <details style="margin-top:10px"><summary class="muted" style="cursor:pointer">Showdown team</summary><pre id="paste"></pre></details></div>
+  <h2>Battles</h2>
+  <p class="sub">Tap any battle to watch it in Showdown's replay viewer.</p>
+  <div id="games"></div>
+</div>
+<script src="common.js"></script>
+<script>
+(async () => {
+  const {el, typeVar} = PS;
+  const n = parseInt(new URLSearchParams(location.search).get('r') || '1');
+  const [status, data] = await Promise.all([PS.json('data/status.json'), PS.gunzipFetch(`runs/run-${PS.pad(n)}.json.gz`).then(JSON.parse)]);
+  const gyms = status.gyms;
+  const stageInfo = key => { const g = gyms.find(x => x.leader === key); return g ? {label: `Gym ${g.badge} · ${g.leader} (${g.type})`, c: typeVar(g.type)} : {label: 'Champion Nexus', c: 'var(--gold)'}; };
+  document.title = `Run ${n} — Professor Skieth's League`;
+  if (data.champion) document.getElementById('hero').classList.add('champ');
+  document.getElementById('h').textContent = `Run ${n}: Volt v${data.brainVersion} ` + (data.champion ? '👑 became Champion' : data.depth >= 8 ? 'fell to the Champion' : `fell at ${stageInfo(data.reached).label}`);
+  document.getElementById('s').textContent = data.series.map(s => `${stageInfo(s.stage).label.split(' · ')[0]} ${s.score}`).join('  →  ');
+  document.getElementById('nav').append(
+    n > 1 ? el('a', {class: 'btn ghost', href: `run.html?r=${n - 1}`}, '← Run ' + (n - 1)) : '', ' ',
+    el('a', {class: 'btn ghost', href: `run.html?r=${n + 1}`}, 'Run ' + (n + 1) + ' →'));
+  document.getElementById('team').append(...data.team.map(t => el('tr', {}, el('td', {}, t.species), el('td', {}, t.joined === n ? el('span', {class: 'win'}, 'New this run') : 'Run ' + t.joined),
+    el('td', {class: 'num'}, t.dmg + '%'), el('td', {class: 'num'}, t.kos))));
+  document.getElementById('paste').textContent = data.teamText;
+  const box = document.getElementById('games');
+  let cur = null;
+  data.games.forEach((g, i) => {
+    if (g.stage !== cur) { cur = g.stage; const si = stageInfo(g.stage); box.append(el('h2', {style: 'font-size:16px'}, el('span', {class: 'pill', style: `--c:${si.c}`}, si.label))); box.append(el('div', {class: 'games', id: 'st-' + g.stage})); }
+    const si = stageInfo(g.stage);
+    document.getElementById('st-' + g.stage).append(el('a', {class: 'game', href: `watch.html?r=${n}&g=${i}`, style: `--c:${g.won ? 'var(--win)' : 'var(--loss)'};display:block;color:inherit;text-decoration:none`},
+      el('div', {style: 'font-weight:700'}, `Game ${g.game}: ${g.won ? 'Volt wins' : 'Volt loses'}`, ),
+      el('div', {class: 'muted', style: 'font-size:13px'}, `${g.p1} vs. ${g.p2} · ${g.turns} turns`),
+      el('div', {style: 'margin-top:6px'}, el('span', {class: 'btn'}, '▶ Watch'))));
+  });
+})().catch(e => { document.getElementById('h').textContent = 'This run is not available yet.'; });
+</script>
+</body>
+</html>
