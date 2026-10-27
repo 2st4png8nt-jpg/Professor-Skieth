@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neural Upgrade — Professor Skieth's League</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .meter { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; min-width: 80px; }
+  .meter i { display: block; height: 100%; background: var(--win); }
+  .meter i.low { background: var(--loss); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">Professor <span>Skieth</span>'s League</a>
+    <nav><a href="index.html">Gauntlet</a><a href="brawl.html">Brawl</a><a class="on" href="neural.html">Neural</a><a href="league.html">League battles</a></nav>
+  </header>
+  <section class="hero" id="hero">
+    <h1 id="h">Neural Upgrade</h1>
+    <p class="sub" id="s">Every gym leader and champion is being given a brain that learned by playing itself. Results land here when training finishes.</p>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <h2>Did everyone get better?</h2>
+  <p class="sub">Each agent's old hand-tuned brain against the new neural brain. Both pilot the same two teams, swapping sides every game, so the only difference is the brain.</p>
+  <div class="card"><table><thead><tr><th>Agent</th><th>Role</th><th class="num">New brain wins</th><th></th></tr></thead><tbody id="proof"></tbody></table></div>
+
+  <h2>Brawl rematch · everyone on the neural brain</h2>
+  <div class="card"><table><thead><tr><th class="num">#</th><th>Champion</th><th class="num">Series</th><th class="num">Games</th></tr></thead><tbody id="bt"></tbody></table></div>
+  <div id="series"></div>
+
+  <h2>Gym league rematch · round robin, best of 3</h2>
+  <div class="card"><table><thead><tr><th class="num">#</th><th>Gym Leader</th><th class="num">Series</th><th class="num">Games</th></tr></thead><tbody id="gt"></tbody></table></div>
+
+  <h2>How the brain works</h2>
+  <div class="card mons" style="font-size:14px;line-height:1.6">
+    One shared neural network (about 12,000 numbers) reads the battle each turn: HP, speed, boosts, hazards, how hard each move hits, what each switch-in risks. It scores every legal move and switch.
+    It started by copying Red's Grand Champion brain, then trained by playing itself, its past versions and every league brain. Wins pushed its choices up and losses pushed them down.
+    It's the same idea as Jaxcalibur, at proof-of-concept scale: a few hundred thousand games on two CPU cores, against Jaxcalibur's ~100 million on a GPU, and no look-ahead search yet.
+  </div>
+</div>
+<script src="common.js"></script>
+<script>
+(async () => {
+  const {el} = PS;
+  const d = await PS.json('data/neural.json').catch(() => null);
+  if (!d) return;
+  const avg = d.proof.reduce((a, p) => a + p.rate, 0) / d.proof.length;
+  const better = d.proof.filter(p => p.rate > 0.5).length;
+  document.getElementById('h').textContent = `👑 ${d.brawl.champion} wins the neural Brawl`;
+  document.getElementById('hero').classList.add('champ');
+  document.getElementById('s').textContent = `With everyone on the new brain. (Old-brain Brawl winner: ${d.previousChampion}.) The new brain beat the old one for ${better} of ${d.proof.length} agents.`;
+  document.getElementById('tiles').append(...[
+    ['Self-play games', (d.trainedOn.totalGames || 0).toLocaleString()], ['Training rounds', d.trainedOn.iter],
+    ['New vs old (avg)', Math.round(avg * 100) + '%'], ['Agents improved', `${better}/${d.proof.length}`],
+  ].map(([l, v]) => el('div', {class: 'tile'}, el('div', {class: 'l'}, l), el('div', {class: 'v'}, v))));
+  document.getElementById('proof').append(...d.proof.slice().sort((a, b) => b.rate - a.rate).map(p => el('tr', {},
+    el('td', {style: 'font-weight:700'}, p.name), el('td', {class: 'muted'}, p.role),
+    el('td', {class: 'num'}, `${p.newWins}/${p.games} (${Math.round(p.rate * 100)}%)`),
+    el('td', {}, el('div', {class: 'meter'}, el('i', {class: p.rate < 0.5 ? 'low' : '', style: `width:${Math.round(p.rate * 100)}%`}))))));
+  const table = (id, rows) => document.getElementById(id).append(...rows.map((s, i) => el('tr', {}, el('td', {class: 'num'}, i + 1), el('td', {style: 'font-weight:700'}, s.name),
+    el('td', {class: 'num'}, `${s.sw}-${s.sl}`), el('td', {class: 'num'}, `${s.gw}-${s.gl}`))));
+  table('bt', d.brawl.standings); table('gt', d.gymLeague);
+  const box = document.getElementById('series');
+  d.brawl.results.slice().reverse().forEach(r => {
+    const gs = d.brawl.games.map((g, i) => ({...g, i})).filter(g => g.stage === r.stage && g.a === r.a && g.b === r.b);
+    box.append(el('h2', {style: 'font-size:16px'}, el('span', {class: 'pill', style: `--c:${r.stage === 'Grand Final' ? 'var(--gold)' : 'var(--accent)'}`}, r.stage), ` ${r.a} ${r.wa}-${r.wb} ${r.b}`));
+    box.append(el('div', {class: 'games'}, ...gs.map(g => el('a', {class: 'game', href: `watch.html?n=${g.i}`, style: '--c:var(--accent);display:block;color:inherit;text-decoration:none'},
+      el('div', {style: 'font-weight:700'}, `Game ${g.game} · ${g.winner} wins`), el('div', {class: 'muted', style: 'font-size:13px'}, `${g.turns} turns`),
+      el('div', {style: 'margin-top:6px'}, el('span', {class: 'btn'}, '▶ Watch'))))));
+  });
+})();
+</script>
+</body>
+</html>
