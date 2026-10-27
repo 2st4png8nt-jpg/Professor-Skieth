@@ -21,5 +21,10 @@ window.PS = {
   },
   typeVar(t) { return `var(--${String(t).replace(/[^A-Za-z]/g, '')})`; },
   pad(n) { return String(n).padStart(4, '0'); },
+  // Seasons: 1 = Gen 9 Lv.100 random sets, 2 = Gen 9 Champions. Default is the newest season.
+  season: (() => { const s = new URLSearchParams(location.search).get('s'); return s === '1' ? 1 : 2; })(),
+  get dataDir() { return this.season === 1 ? 'data/' : 'data/s2/'; },
+  get runsDir() { return this.season === 1 ? 'runs/' : 's2/runs/'; },
+  get sq() { return 's=' + this.season; },
   STAGES: ['Gym 1', 'Gym 2', 'Gym 3', 'Gym 4', 'Gym 5', 'Gym 6', 'Gym 7', 'Gym 8', 'Champion'],
 };

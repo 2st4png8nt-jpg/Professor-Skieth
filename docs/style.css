@@ -65,3 +65,8 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
 .pip.ko { background: transparent; outline: 2px solid var(--loss); outline-offset: -2px; }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }
 .chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--panel2); border: 1px solid var(--line); color: var(--fg); }
+
+/* Season switcher */
+.seasons { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.season { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 13px; font-weight: 600; text-decoration: none !important; }
+.season.on { background: var(--gold); color: #0d1117; border-color: var(--gold); }

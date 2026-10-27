@@ -13,6 +13,7 @@
     <nav><a class="on" href="index.html">Gauntlet</a><a href="league.html">League battles</a></nav>
   </header>
 
+  <div class="seasons" id="seasons"></div>
   <section class="hero" id="hero">
     <h1 id="headline">Loading…</h1>
     <p class="sub" id="subline"></p>
@@ -39,8 +40,12 @@
 <script>
 (async () => {
   const {el, typeVar, STAGES} = PS;
-  const [status, runs] = await Promise.all([PS.json('data/status.json'), PS.json('data/runs.json')]);
+  const [status, runs] = await Promise.all([PS.json(PS.dataDir + 'status.json'), PS.json(PS.dataDir + 'runs.json')]);
   const gyms = status.gyms;
+  const seasons = await PS.json('data/seasons.json').catch(() => [1]);
+  document.getElementById('seasons').append(...seasons.slice().reverse().map(s => el('a', {class: 'season' + (s === PS.season ? ' on' : ''), href: 'index.html?s=' + s},
+    s === 2 ? 'Season 2 · Champions' : 'Season 1 · Gen 9 Random')));
+  if (status.format) document.getElementById('foot').dataset.format = status.format;
   const stageName = d => d >= 8 ? 'the Champion' : `Gym ${d + 1} (${gyms[d].leader}, ${gyms[d].type})`;
   const best = runs.reduce((a, r) => Math.max(a, r.depth), 0);
   const last = runs[runs.length - 1];
@@ -50,7 +55,7 @@
     document.getElementById('headline').innerHTML = '';
     document.getElementById('headline').append('👑 Volt v' + status.champion.version + ' is the Champion');
     document.getElementById('subline').textContent = `He cleared all 8 gyms and beat Champion Nexus on run ${status.champion.run} of ${runs.length}.`;
-    document.getElementById('subline').after(el('a', {class: 'btn', href: 'run.html?r=' + status.champion.run}, '▶ Watch the title run'));
+    document.getElementById('subline').after(el('a', {class: 'btn', href: 'run.html?' + PS.sq + '&r=' + status.champion.run}, '▶ Watch the title run'));
   } else {
     document.getElementById('headline').textContent = status.finished ? 'No champion yet' : 'The gauntlet is running';
     document.getElementById('subline').textContent = runs.length
@@ -96,7 +101,7 @@
       const d = r.depth;
       const c = add('circle', {cx: x(r.run), cy: y(d) + (Math.sin(r.run * 12.9) * 3), r: 3.2, fill: r.depth >= 8 ? '#f4c542' : '#6aa8ff', 'fill-opacity': .75, style: 'cursor:pointer'});
       const tt = document.createElementNS(ns, 'title'); tt.textContent = `Run ${r.run}: ${r.champion ? 'CHAMPION' : 'lost to ' + stageName(r.depth)}`; c.appendChild(tt);
-      c.addEventListener('click', () => { location.href = 'run.html?r=' + r.run; });
+      c.addEventListener('click', () => { location.href = 'run.html?' + PS.sq + '&r=' + r.run; });
     }
     const lt = add('text', {x: W - R, y: H - 6, 'text-anchor': 'end'}); lt.textContent = `run ${runs.length}`;
     const ft = add('text', {x: L, y: H - 6}); ft.textContent = 'run 1';
@@ -115,7 +120,7 @@
       const c = i < 8 ? typeVar(gyms[i].type) : 'var(--gold)';
       return el('span', {class: 'pip ' + state, style: `--c:${c}`, title: i < 8 ? `Gym ${i + 1}` : 'Champion'});
     }));
-    list.append(el('a', {class: 'runcard' + (r.champion ? ' champ' : r.depth >= 8 ? ' close' : ''), href: 'run.html?r=' + r.run},
+    list.append(el('a', {class: 'runcard' + (r.champion ? ' champ' : r.depth >= 8 ? ' close' : ''), href: 'run.html?' + PS.sq + '&r=' + r.run},
       el('div', {class: 'rc-top'}, el('span', {class: 'rc-num'}, 'Run ' + r.run), el('span', {class: 'rc-meta'}, `Volt v${r.brainVersion} · ${r.games} battles`)),
       el('div', {class: 'rc-title'}, runTitle(r)),
       pips,
