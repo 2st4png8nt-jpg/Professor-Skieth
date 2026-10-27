@@ -1,0 +1,757 @@
+{
+ "trainedOn": {
+  "iter": 580,
+  "totalGames": 139200,
+  "evalWinRate": 0.6822916666666666
+ },
+ "proof": [
+  {
+   "name": "Monk",
+   "role": "Steel Gym Leader",
+   "newWins": 33,
+   "games": 60,
+   "rate": 0.55
+  },
+  {
+   "name": "Blaze",
+   "role": "Fire Gym Leader",
+   "newWins": 36,
+   "games": 60,
+   "rate": 0.6
+  },
+  {
+   "name": "Oracle",
+   "role": "Psychic Gym Leader",
+   "newWins": 41,
+   "games": 60,
+   "rate": 0.6833333333333333
+  },
+  {
+   "name": "Hawk",
+   "role": "Flying Gym Leader",
+   "newWins": 32,
+   "games": 60,
+   "rate": 0.5333333333333333
+  },
+  {
+   "name": "Dash",
+   "role": "Electric Gym Leader",
+   "newWins": 29,
+   "games": 60,
+   "rate": 0.48333333333333334
+  },
+  {
+   "name": "Cairn",
+   "role": "Rock Gym Leader",
+   "newWins": 36,
+   "games": 60,
+   "rate": 0.6
+  },
+  {
+   "name": "Ace",
+   "role": "Water Gym Leader",
+   "newWins": 38,
+   "games": 60,
+   "rate": 0.6333333333333333
+  },
+  {
+   "name": "Sage",
+   "role": "Dragon Gym Leader",
+   "newWins": 39,
+   "games": 60,
+   "rate": 0.65
+  },
+  {
+   "name": "Volt",
+   "role": "Season 2 Champion",
+   "newWins": 42,
+   "games": 60,
+   "rate": 0.7
+  },
+  {
+   "name": "Red",
+   "role": "Grand Champion",
+   "newWins": 42,
+   "games": 60,
+   "rate": 0.7
+  },
+  {
+   "name": "Blue",
+   "role": "Champion",
+   "newWins": 39,
+   "games": 60,
+   "rate": 0.65
+  },
+  {
+   "name": "Skeith",
+   "role": "Champion",
+   "newWins": 42,
+   "games": 60,
+   "rate": 0.7
+  }
+ ],
+ "gymLeague": [
+  {
+   "name": "Sage",
+   "sw": 7,
+   "sl": 0,
+   "gw": 14,
+   "gl": 1
+  },
+  {
+   "name": "Dash",
+   "sw": 6,
+   "sl": 1,
+   "gw": 12,
+   "gl": 2
+  },
+  {
+   "name": "Blaze",
+   "sw": 4,
+   "sl": 3,
+   "gw": 8,
+   "gl": 6
+  },
+  {
+   "name": "Ace",
+   "sw": 4,
+   "sl": 3,
+   "gw": 8,
+   "gl": 6
+  },
+  {
+   "name": "Monk",
+   "sw": 3,
+   "sl": 4,
+   "gw": 6,
+   "gl": 9
+  },
+  {
+   "name": "Hawk",
+   "sw": 2,
+   "sl": 5,
+   "gw": 7,
+   "gl": 10
+  },
+  {
+   "name": "Oracle",
+   "sw": 1,
+   "sl": 6,
+   "gw": 2,
+   "gl": 12
+  },
+  {
+   "name": "Cairn",
+   "sw": 1,
+   "sl": 6,
+   "gw": 2,
+   "gl": 13
+  }
+ ],
+ "gymSeries": [
+  {
+   "a": "Monk",
+   "b": "Blaze",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Blaze",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Monk",
+   "b": "Oracle",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Monk",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Monk",
+   "b": "Hawk",
+   "wa": 2,
+   "wb": 1,
+   "winner": "Monk",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Monk",
+   "b": "Dash",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Dash",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Monk",
+   "b": "Cairn",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Monk",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Monk",
+   "b": "Ace",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Ace",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Monk",
+   "b": "Sage",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Sage",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Blaze",
+   "b": "Oracle",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Blaze",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Blaze",
+   "b": "Hawk",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Hawk",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Blaze",
+   "b": "Dash",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Dash",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Blaze",
+   "b": "Cairn",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Blaze",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Blaze",
+   "b": "Ace",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Blaze",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Blaze",
+   "b": "Sage",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Sage",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Oracle",
+   "b": "Hawk",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Hawk",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Oracle",
+   "b": "Dash",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Dash",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Oracle",
+   "b": "Cairn",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Oracle",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Oracle",
+   "b": "Ace",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Ace",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Oracle",
+   "b": "Sage",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Sage",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Hawk",
+   "b": "Dash",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Dash",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Hawk",
+   "b": "Cairn",
+   "wa": 1,
+   "wb": 2,
+   "winner": "Cairn",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Hawk",
+   "b": "Ace",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Ace",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Hawk",
+   "b": "Sage",
+   "wa": 1,
+   "wb": 2,
+   "winner": "Sage",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Dash",
+   "b": "Cairn",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Dash",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Dash",
+   "b": "Ace",
+   "wa": 2,
+   "wb": 0,
+   "winner": "Dash",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Dash",
+   "b": "Sage",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Sage",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Cairn",
+   "b": "Ace",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Ace",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Cairn",
+   "b": "Sage",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Sage",
+   "stage": "Gym league"
+  },
+  {
+   "a": "Ace",
+   "b": "Sage",
+   "wa": 0,
+   "wb": 2,
+   "winner": "Sage",
+   "stage": "Gym league"
+  }
+ ],
+ "brawl": {
+  "fighters": [
+   {
+    "name": "Volt",
+    "origin": "Season 2 Champion",
+    "teamText": "Garchomp (M) @ Lum Berry  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- swordsdance  \n- earthquake  \n- scaleshot  \n- outrage  \n\nMaushold (Maushold-Four) @ Wide Lens  \nAbility: Technician  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- bite  \n- encore  \n- tidyup  \n- populationbomb  \n\nMedicham (M) @ Choice Scarf  \nAbility: Pure Power  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- icepunch  \n- poisonjab  \n- zenheadbutt  \n- closecombat  \n\nQuaquaval (F) @ Life Orb  \nAbility: Moxie  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- swordsdance  \n- encore  \n- closecombat  \n- aquastep  \n\nOranguru (M) @ Leftovers  \nAbility: Inner Focus  \nLevel: 50  \nEVs: 32 HP / 2 Def / 32 SpA  \nModest Nature  \n- focusblast  \n- psyshock  \n- hypervoice  \n- nastyplot  \n\nEmolga (F)  \nAbility: Motor Drive  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- roost  \n- thunderbolt  \n- acrobatics  \n- nuzzle  \n\n",
+    "version": "Neural brain"
+   },
+   {
+    "name": "Red",
+    "origin": "Won the title on run 248",
+    "teamText": "Garchomp (F) @ Leftovers  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- spikes  \n- stealthrock  \n- outrage  \n- earthquake  \n\nKrookodile (M) @ Choice Scarf  \nAbility: Intimidate  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- earthquake  \n- closecombat  \n- gunkshot  \n- knockoff  \n\nScrafty (M) @ Scraftinite  \nAbility: Intimidate  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- ironhead  \n- knockoff  \n- dragondance  \n- drainpunch  \n\nSpiritomb (M) @ Leftovers  \nAbility: Pressure  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- foulplay  \n- willowisp  \n- poltergeist  \n- suckerpunch  \n\nAzumarill (M) @ Sitrus Berry  \nAbility: Huge Power  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- playrough  \n- liquidation  \n- aquajet  \n- bellydrum  \n\nHoundoom (F) @ Life Orb  \nAbility: Flash Fire  \nLevel: 50  \nEVs: 2 HP / 32 SpA / 32 Spe  \nTimid Nature  \n- darkpulse  \n- fireblast  \n- nastyplot  \n- sludgebomb  \n\n",
+    "version": "Neural brain"
+   },
+   {
+    "name": "Blue",
+    "origin": "Won the title on run 32",
+    "teamText": "Garchomp (F) @ Lum Berry  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- earthquake  \n- swordsdance  \n- scaleshot  \n- outrage  \n\nHoundstone (M) @ Leftovers  \nAbility: Fluffy  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- shadowsneak  \n- bodypress  \n- roar  \n- poltergeist  \n\nMudsdale (M) @ Leftovers  \nAbility: Stamina  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- stoneedge  \n- earthquake  \n- heavyslam  \n- roar  \n\nStarmie @ Starminite  \nAbility: Natural Cure  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- icespinner  \n- bulkup  \n- liquidation  \n- zenheadbutt  \n\nJolteon (M) @ Leftovers  \nAbility: Volt Absorb  \nLevel: 50  \nEVs: 2 HP / 32 SpA / 32 Spe  \nTimid Nature  \n- thunderbolt  \n- substitute  \n- calmmind  \n- alluringvoice  \n\nDecidueye (Decidueye-Hisui) (F) @ Leftovers  \nAbility: Scrappy  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- suckerpunch  \n- roost  \n- triplearrows  \n- leafblade  \n\n",
+    "version": "Neural brain"
+   },
+   {
+    "name": "Skeith",
+    "origin": "Won the title on run 57",
+    "teamText": "Mamoswine (M) @ Life Orb  \nAbility: Thick Fat  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- knockoff  \n- iciclecrash  \n- iceshard  \n- earthquake  \n\nMaushold @ Wide Lens  \nAbility: Technician  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- populationbomb  \n- bite  \n- encore  \n- tidyup  \n\nAraquanid (F) @ Leftovers  \nAbility: Water Bubble  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- stickyweb  \n- liquidation  \n- mirrorcoat  \n- leechlife  \n\nOrthworm (M) @ Chesto Berry  \nAbility: Earth Eater  \nLevel: 50  \nEVs: 32 HP / 32 Atk / 2 Def  \nAdamant Nature  \n- irontail  \n- bodypress  \n- coil  \n- rest  \n\nRaichu (F) @ Life Orb  \nAbility: Lightning Rod  \nLevel: 50  \nEVs: 2 HP / 32 SpA / 32 Spe  \nTimid Nature  \n- surf  \n- encore  \n- nastyplot  \n- thunderbolt  \n\nGarchomp (M) @ Leftovers  \nAbility: Rough Skin  \nLevel: 50  \nEVs: 2 HP / 32 Atk / 32 Spe  \nJolly Nature  \n- spikes  \n- stealthrock  \n- earthquake  \n- outrage  \n\n",
+    "version": "Neural brain"
+   }
+  ],
+  "standings": [
+   {
+    "name": "Blue",
+    "sw": 2,
+    "sl": 1,
+    "gw": 8,
+    "gl": 4
+   },
+   {
+    "name": "Skeith",
+    "sw": 2,
+    "sl": 1,
+    "gw": 6,
+    "gl": 4
+   },
+   {
+    "name": "Red",
+    "sw": 1,
+    "sl": 2,
+    "gw": 5,
+    "gl": 6
+   },
+   {
+    "name": "Volt",
+    "sw": 1,
+    "sl": 2,
+    "gw": 3,
+    "gl": 8
+   }
+  ],
+  "results": [
+   {
+    "a": "Volt",
+    "b": "Red",
+    "wa": 0,
+    "wb": 3,
+    "winner": "Red",
+    "stage": "Round robin"
+   },
+   {
+    "a": "Volt",
+    "b": "Blue",
+    "wa": 3,
+    "wb": 2,
+    "winner": "Volt",
+    "stage": "Round robin"
+   },
+   {
+    "a": "Volt",
+    "b": "Skeith",
+    "wa": 0,
+    "wb": 3,
+    "winner": "Skeith",
+    "stage": "Round robin"
+   },
+   {
+    "a": "Red",
+    "b": "Blue",
+    "wa": 1,
+    "wb": 3,
+    "winner": "Blue",
+    "stage": "Round robin"
+   },
+   {
+    "a": "Red",
+    "b": "Skeith",
+    "wa": 1,
+    "wb": 3,
+    "winner": "Skeith",
+    "stage": "Round robin"
+   },
+   {
+    "a": "Blue",
+    "b": "Skeith",
+    "wa": 3,
+    "wb": 0,
+    "winner": "Blue",
+    "stage": "Round robin"
+   },
+   {
+    "a": "Blue",
+    "b": "Skeith",
+    "wa": 0,
+    "wb": 4,
+    "winner": "Skeith",
+    "stage": "Grand Final"
+   }
+  ],
+  "champion": "Skeith",
+  "games": [
+   {
+    "stage": "Round robin",
+    "game": 1,
+    "p1": "Volt",
+    "p2": "Red",
+    "winner": "Red",
+    "turns": 20,
+    "a": "Volt",
+    "b": "Red"
+   },
+   {
+    "stage": "Round robin",
+    "game": 2,
+    "p1": "Red",
+    "p2": "Volt",
+    "winner": "Red",
+    "turns": 19,
+    "a": "Volt",
+    "b": "Red"
+   },
+   {
+    "stage": "Round robin",
+    "game": 3,
+    "p1": "Volt",
+    "p2": "Red",
+    "winner": "Red",
+    "turns": 23,
+    "a": "Volt",
+    "b": "Red"
+   },
+   {
+    "stage": "Round robin",
+    "game": 1,
+    "p1": "Volt",
+    "p2": "Blue",
+    "winner": "Blue",
+    "turns": 18,
+    "a": "Volt",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 2,
+    "p1": "Blue",
+    "p2": "Volt",
+    "winner": "Volt",
+    "turns": 17,
+    "a": "Volt",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 3,
+    "p1": "Volt",
+    "p2": "Blue",
+    "winner": "Blue",
+    "turns": 13,
+    "a": "Volt",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 4,
+    "p1": "Blue",
+    "p2": "Volt",
+    "winner": "Volt",
+    "turns": 17,
+    "a": "Volt",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 5,
+    "p1": "Volt",
+    "p2": "Blue",
+    "winner": "Volt",
+    "turns": 13,
+    "a": "Volt",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 1,
+    "p1": "Volt",
+    "p2": "Skeith",
+    "winner": "Skeith",
+    "turns": 14,
+    "a": "Volt",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 2,
+    "p1": "Skeith",
+    "p2": "Volt",
+    "winner": "Skeith",
+    "turns": 12,
+    "a": "Volt",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 3,
+    "p1": "Volt",
+    "p2": "Skeith",
+    "winner": "Skeith",
+    "turns": 12,
+    "a": "Volt",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 1,
+    "p1": "Red",
+    "p2": "Blue",
+    "winner": "Blue",
+    "turns": 18,
+    "a": "Red",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 2,
+    "p1": "Blue",
+    "p2": "Red",
+    "winner": "Red",
+    "turns": 18,
+    "a": "Red",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 3,
+    "p1": "Red",
+    "p2": "Blue",
+    "winner": "Blue",
+    "turns": 12,
+    "a": "Red",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 4,
+    "p1": "Blue",
+    "p2": "Red",
+    "winner": "Blue",
+    "turns": 15,
+    "a": "Red",
+    "b": "Blue"
+   },
+   {
+    "stage": "Round robin",
+    "game": 1,
+    "p1": "Red",
+    "p2": "Skeith",
+    "winner": "Red",
+    "turns": 19,
+    "a": "Red",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 2,
+    "p1": "Skeith",
+    "p2": "Red",
+    "winner": "Skeith",
+    "turns": 29,
+    "a": "Red",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 3,
+    "p1": "Red",
+    "p2": "Skeith",
+    "winner": "Skeith",
+    "turns": 25,
+    "a": "Red",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 4,
+    "p1": "Skeith",
+    "p2": "Red",
+    "winner": "Skeith",
+    "turns": 26,
+    "a": "Red",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 1,
+    "p1": "Blue",
+    "p2": "Skeith",
+    "winner": "Blue",
+    "turns": 19,
+    "a": "Blue",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 2,
+    "p1": "Skeith",
+    "p2": "Blue",
+    "winner": "Blue",
+    "turns": 26,
+    "a": "Blue",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Round robin",
+    "game": 3,
+    "p1": "Blue",
+    "p2": "Skeith",
+    "winner": "Blue",
+    "turns": 27,
+    "a": "Blue",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Grand Final",
+    "game": 1,
+    "p1": "Blue",
+    "p2": "Skeith",
+    "winner": "Skeith",
+    "turns": 28,
+    "a": "Blue",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Grand Final",
+    "game": 2,
+    "p1": "Skeith",
+    "p2": "Blue",
+    "winner": "Skeith",
+    "turns": 28,
+    "a": "Blue",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Grand Final",
+    "game": 3,
+    "p1": "Blue",
+    "p2": "Skeith",
+    "winner": "Skeith",
+    "turns": 27,
+    "a": "Blue",
+    "b": "Skeith"
+   },
+   {
+    "stage": "Grand Final",
+    "game": 4,
+    "p1": "Skeith",
+    "p2": "Blue",
+    "winner": "Skeith",
+    "turns": 32,
+    "a": "Blue",
+    "b": "Skeith"
+   }
+  ]
+ },
+ "previousChampion": "Red"
+}
